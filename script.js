@@ -16,6 +16,12 @@ const pluginData = {
         details: "Advanced combat sequencing tool designed for high-performance Crystal PvP. Focuses on improving frame rates by disabling unnecessary particles and fog. This is the maximum possible to reduce particle and fog for fully server side no client side interaction needed!",
         specs: "Fps improvement / Low Latency / PvP Optimization. crystalcombo.use for permissions and /noparticle disable/enable and same for /nofog 2 in ONE! .",
         prefix: "crystalcombo"
+    },
+    "antianchorspam": {
+        title: "Anti-Anchor Spam",
+        details: "Hard-stop protection against low-skill anchor spamming. Implements a technical cooldown logic that forces players to rely on crystal combinations rather than explosive spamming. Essential for high-skill competitive servers.And also added the text 'Holy anchor spammer. CANT DO IT HERE HAHAH NOOB' To mock the noobs HAHA goodluck",
+        specs: "1.21.8 Paper Support / Rolling Window Logic / Zero Lag. Max 5 anchors per 8 seconds.",
+        prefix: "antianchorspam"
     }
 };
 
