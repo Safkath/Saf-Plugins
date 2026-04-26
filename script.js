@@ -10,6 +10,12 @@ const pluginData = {
         details: "Centralized monitoring system. Aggregates community data to prioritize staff action against suspicious actors.",
         specs: "Admin Dashboard / Automated Ranking / Database Sync. susreport.use for Luckperms and /sus for leaderboard and /report for reporting.",
         prefix: "susreports"
+    },
+    "crystalcombo": {
+        title: "Crystal Combo",
+        details: "Advanced combat sequencing tool designed for high-performance Crystal PvP. Focuses on improving frame rates by disabling unnecessary particles and fog. This is the maximum possible to reduce particle and fog for fully server side no client side interaction needed!",
+        specs: "Fps improvement / Low Latency / PvP Optimization. crystalcombo.use for permissions and /noparticle disable/enable and same for /nofog 2 in ONE! .",
+        prefix: "crystalcombo"
     }
 };
 
@@ -39,12 +45,13 @@ document.querySelectorAll('.dl-btn[data-id]').forEach(btn => {
 
 updateDisplayCounts();
 
-document.querySelectorAll('.glass-card').forEach(card => {
+document.querySelectorAll('.glass-card[data-plugin]').forEach(card => {
     const btn = card.querySelector('.plugin-title');
     const key = card.getAttribute('data-plugin');
 
     btn.onclick = () => {
         const data = pluginData[key];
+        if(!data) return;
         let images = '';
         for (let i = 1; i <= 7; i++) {
             images += `<img src="assets/${data.prefix}${i}.png" class="ss-img" onclick="openLB(this.src)" onerror="this.style.display='none'">`;
