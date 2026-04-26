@@ -52,6 +52,9 @@ body { background: var(--bg); color: #fff; overflow-x: hidden; min-height: 100vh
 
 .card-inner { padding: 40px; }
 .card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+.head-left { display: flex; align-items: center; gap: 12px; }
+.download-stats { display: flex; align-items: center; gap: 6px; color: #fff; font-size: 0.75rem; font-weight: 800; }
+
 .badge { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; }
 .badge.blue { background: rgba(0, 210, 255, 0.1); color: var(--blue); }
 .badge.purple { background: rgba(157, 80, 187, 0.1); color: var(--purple); }
