@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saf-Plugins | Engineering Excellence</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="aurora-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <nav class="nav-minimal">
+        <span class="logo-text">Saf-Plugins</span>
+        <div class="nav-meta">EST 2026</div>
+    </nav>
+
+    <header class="hero">
+        <h1 class="hero-title">Saf-Plugins Proffesional Plugins <br>For Zero Cost.</h1>
+        <p class="hero-sub">Direct. Technical. Optimized.</p>
+    </header>
+
+    <main class="content-wrapper">
+        <section class="grid-container">
+            <div class="glass-card" data-plugin="junkthrower">
+                <div class="card-inner">
+                    <div class="card-head">
+                        <span class="badge blue">Combat Utility</span>
+                        <span class="version">v1.2.8</span>
+                    </div>
+                    <button class="plugin-title">JunkThrower</button>
+                    <div class="specs">
+                        <div class="spec-item"><span>Purpose</span> Inventory Management</div>
+                        <div class="spec-item"><span>Primary</span> Auto-filter combat debris</div>
+                        <div class="spec-item"><span>Impact</span> Lower client/server lag</div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="downloads/EnhancedCombat-1.0-SNAPSHOT.jar" class="dl-btn" download>Download JAR</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card" data-plugin="susreports">
+                <div class="card-inner">
+                    <div class="card-head">
+                        <span class="badge purple">Administration</span>
+                        <span class="version">v1.0.4</span>
+                    </div>
+                    <button class="plugin-title">Sus Reports</button>
+                    <div class="specs">
+                        <div class="spec-item"><span>Purpose</span> Staff Moderation</div>
+                        <div class="spec-item"><span>Primary</span> Community threat ranking</div>
+                        <div class="spec-item"><span>Impact</span> Efficient ban management</div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="downloads/SusReports.jar" class="dl-btn" download>Download JAR</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="action-section">
+            <div class="action-card">
+                <div class="action-content">
+                    <h2>Custom Logic Required?</h2>
+                    <p>Direct technical development for specialized server needs. Free of charge.</p>
+                </div>
+                <button id="request-btn" class="request-trigger">Submit Project</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 Saf-Plugins — Dev <span>SafkathAlu — Message noolaowq For support </span></p>
+    </footer>
+
+    <div id="info-modal" class="modal">
+        <div class="modal-glass">
+            <span class="close-ui">&times;</span>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <div id="request-modal" class="modal">
+        <div class="modal-glass form-box">
+            <span class="close-ui close-req">&times;</span>
+            <h2>New Project</h2>
+            <div class="input-wrap">
+                <label>Discord ID</label>
+                <input type="text" id="req-name" placeholder="ExampleId67">
+            </div>
+            <div class="input-wrap">
+                <label>Requirements</label>
+                <textarea id="req-msg" placeholder="Summarize your technical requirements..."></textarea>
+            </div>
+            <button id="submit-request" class="dl-btn full-w">Submit</button>
+        </div>
+    </div>
+
+    <div id="lightbox" class="lb-overlay">
+        <img id="lb-img" src="">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
