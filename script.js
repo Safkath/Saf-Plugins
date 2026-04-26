@@ -19,6 +19,26 @@ const content = document.getElementById("modal-content");
 const lb = document.getElementById("lightbox");
 const lbImg = document.getElementById("lb-img");
 
+function updateDisplayCounts() {
+    Object.keys(pluginData).forEach(key => {
+        const count = localStorage.getItem(`dl_${key}`) || Math.floor(Math.random() * 50) + 10;
+        if(!localStorage.getItem(`dl_${key}`)) localStorage.setItem(`dl_${key}`, count);
+        const el = document.getElementById(`count-${key}`);
+        if(el) el.innerText = count;
+    });
+}
+
+document.querySelectorAll('.dl-btn[data-id]').forEach(btn => {
+    btn.onclick = () => {
+        const id = btn.getAttribute('data-id');
+        let currentCount = parseInt(localStorage.getItem(`dl_${id}`));
+        localStorage.setItem(`dl_${id}`, currentCount + 1);
+        updateDisplayCounts();
+    };
+});
+
+updateDisplayCounts();
+
 document.querySelectorAll('.glass-card').forEach(card => {
     const btn = card.querySelector('.plugin-title');
     const key = card.getAttribute('data-plugin');
