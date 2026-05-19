@@ -1,79 +1,99 @@
-const pluginData = {
-    "junkthrower": {
-        title: "JunkThrower",
-        details: "Eliminates item clutter during high-speed Crystal PvP. Operates on a specialized filtration algorithm to ensure inventory cleanrooms. And without opening inventory in mid combat and when enabled it does not take any items that counts as 'junk' from the ground",
-        specs: "1.21.x Optimized / Combat Integration / Threaded Logic. EnhancedCombat.use for luckperms and /junkthrow enable/disable for ON/OFF.",
-        prefix: "junkthrower"
-    },
-    "susreports": {
-        title: "Sus Reports",
-        details: "Centralized monitoring system. Aggregates community data to prioritize staff action against suspicious actors.",
-        specs: "Admin Dashboard / Automated Ranking / Database Sync. susreport.use for Luckperms and /sus for leaderboard and /report for reporting.",
-        prefix: "susreports"
-    },
-    "crystalcombo": {
-        title: "Crystal Combo",
-        details: "Advanced combat sequencing tool designed for high-performance Crystal PvP. Focuses on improving frame rates by disabling unnecessary particles and fog. This is the maximum possible to reduce particle and fog for fully server side no client side interaction needed!",
-        specs: "Fps improvement / Low Latency / PvP Optimization. crystalcombo.use for permissions and /noparticle disable/enable and same for /nofog 2 in ONE! .",
-        prefix: "crystalcombo"
-    },
-    "antianchorspam": {
-        title: "Anti-Anchor Spam",
-        details: "Hard-stop protection against low-skill anchor spamming. Implements a technical cooldown logic that forces players to rely on crystal combinations rather than explosive spamming. Essential for high-skill competitive servers.And also added the text 'Holy anchor spammer. CANT DO IT HERE HAHAH NOOB' To mock the noobs HAHA goodluck",
-        specs: "1.21.8 Paper Support / Rolling Window Logic / Zero Lag. Max 5 anchors per 8 seconds.",
-        prefix: "antianchorspam"
-    }
-};
-
 const infoM = document.getElementById("info-modal");
 const reqM = document.getElementById("request-modal");
 const content = document.getElementById("modal-content");
 const lb = document.getElementById("lightbox");
 const lbImg = document.getElementById("lb-img");
+const container = document.getElementById('plugin-container');
 
-function updateDisplayCounts() {
+function generateCards() {
     Object.keys(pluginData).forEach(key => {
+        const data = pluginData[key];
         const count = localStorage.getItem(`dl_${key}`) || Math.floor(Math.random() * 50) + 10;
-        if(!localStorage.getItem(`dl_${key}`)) localStorage.setItem(`dl_${key}`, count);
-        const el = document.getElementById(`count-${key}`);
-        if(el) el.innerText = count;
+        localStorage.setItem(`dl_${key}`, count);
+
+        const cardHTML = `
+        <div class="glass-card" data-plugin="${key}">
+            <div class="card-inner">
+                <div class="card-head">
+                    <div class="head-left">
+                        <span class="badge ${data.badgeColor}">${data.category}</span>
+                        <span class="download-stats">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <span class="count-val" id="count-${key}">${count}</span>
+                        </span>
+                    </div>
+                    <span class="version">${data.version}</span>
+                </div>
+                <button class="plugin-title">${data.title}</button>
+                <div class="specs">
+                    <div class="spec-item"><span>Purpose</span> ${data.purpose}</div>
+                    <div class="spec-item"><span>Primary</span> ${data.primary}</div>
+                    <div class="spec-item"><span>Impact</span> ${data.impact}</div>
+                </div>
+                <div class="card-footer">
+                    <a href="downloads/${data.file}" class="dl-btn" data-id="${key}" download>Download JAR</a>
+                </div>
+            </div>
+        </div>`;
+        container.insertAdjacentHTML('beforeend', cardHTML);
+    });
+
+    const comingSoonHTML = `
+    <div class="glass-card coming-soon-card">
+        <div class="card-inner" style="display: flex; flex-direction: column; justify-content: center; height: 100%; min-height: 320px;">
+            <div class="card-head">
+                <span class="badge" style="background: rgba(255,255,255,0.05); color: #444;">Coming Soon</span>
+            </div>
+            <h2 style="font-size: 2.2rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 15px; color: #333;">More Coming Soon</h2>
+            <p style="color: #444; font-weight: 600; margin-bottom: 30px;">GET your custom plugin NOW FOR FREE</p>
+            <div class="card-footer">
+                <button class="dl-btn" style="background: #111; color: #444; cursor: default; border: 1px solid #222;">Awaiting Release</button>
+            </div>
+        </div>
+    </div>`;
+    container.insertAdjacentHTML('beforeend', comingSoonHTML);
+
+    attachEventListeners();
+}
+
+function attachEventListeners() {
+    document.querySelectorAll('.dl-btn[data-id]').forEach(btn => {
+        btn.onclick = () => {
+            const id = btn.getAttribute('data-id');
+            let currentCount = parseInt(localStorage.getItem(`dl_${id}`));
+            localStorage.setItem(`dl_${id}`, currentCount + 1);
+            document.getElementById(`count-${id}`).innerText = currentCount + 1;
+        };
+    });
+
+    document.querySelectorAll('.glass-card[data-plugin]').forEach(card => {
+        const btn = card.querySelector('.plugin-title');
+        const key = card.getAttribute('data-plugin');
+
+        if (btn) {
+            btn.onclick = () => {
+                const data = pluginData[key];
+                if(!data) return;
+                let images = '';
+                for (let i = 1; i <= 7; i++) {
+                    images += `<img src="assets/${data.prefix}${i}.png" class="ss-img" onclick="openLB(this.src)" onerror="this.style.display='none'">`;
+                }
+                content.innerHTML = `
+                    <h1 style="font-size: 3rem; letter-spacing: -2px; margin-bottom: 10px;">${data.title}</h1>
+                    <p style="color: #666; margin-bottom: 30px; font-size: 1.1rem; line-height: 1.5;">${data.details}</p>
+                    <div class="ss-grid">${images}</div>
+                    <div style="padding: 25px; background: #000; border-radius: 16px; border: 1px solid #111;">
+                        <p style="font-family: monospace; color: #444; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">${data.specs}</p>
+                    </div>
+                `;
+                infoM.style.display = "block";
+                document.body.style.overflow = "hidden";
+            };
+        }
     });
 }
 
-document.querySelectorAll('.dl-btn[data-id]').forEach(btn => {
-    btn.onclick = () => {
-        const id = btn.getAttribute('data-id');
-        let currentCount = parseInt(localStorage.getItem(`dl_${id}`));
-        localStorage.setItem(`dl_${id}`, currentCount + 1);
-        updateDisplayCounts();
-    };
-});
-
-updateDisplayCounts();
-
-document.querySelectorAll('.glass-card[data-plugin]').forEach(card => {
-    const btn = card.querySelector('.plugin-title');
-    const key = card.getAttribute('data-plugin');
-
-    btn.onclick = () => {
-        const data = pluginData[key];
-        if(!data) return;
-        let images = '';
-        for (let i = 1; i <= 7; i++) {
-            images += `<img src="assets/${data.prefix}${i}.png" class="ss-img" onclick="openLB(this.src)" onerror="this.style.display='none'">`;
-        }
-        content.innerHTML = `
-            <h1 style="font-size: 3rem; letter-spacing: -2px; margin-bottom: 10px;">${data.title}</h1>
-            <p style="color: #666; margin-bottom: 30px; font-size: 1.1rem; line-height: 1.5;">${data.details}</p>
-            <div class="ss-grid">${images}</div>
-            <div style="padding: 25px; background: #000; border-radius: 16px; border: 1px solid #111;">
-                <p style="font-family: monospace; color: #444; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">${data.specs}</p>
-            </div>
-        `;
-        infoM.style.display = "block";
-        document.body.style.overflow = "hidden";
-    };
-});
+generateCards();
 
 document.getElementById('request-btn').onclick = () => {
     reqM.style.display = "block";
@@ -117,7 +137,10 @@ document.getElementById('submit-request').onclick = () => {
     });
 };
 
-function openLB(src) { lbImg.src = src; lb.style.display = "flex"; }
+function openLB(src) { 
+    lbImg.src = src; 
+    lb.style.display = "flex"; 
+}
 lb.onclick = () => lb.style.display = "none";
 
 window.onclick = (e) => {
