@@ -3,77 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saf-Plugins | Engineering Excellence</title>
-    <link rel="icon" type="image/png" href="assets/sp.png">
+    <title>Minecraft Plugin Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="mc-cursor-default">
+<div id="particles" class="pixel-particles"></div>
 
-    <div class="aurora-container">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
+<nav>
+    <div class="brand">
+        <div class="pixel-icon-frame">
+            <div class="nav-logo-box"></div>
+        </div>
+        <span class="logo-text mc-font">CRAFT<span class="text-emerald">PLUGINS</span></span>
     </div>
+    <div class="nav-controls">
+        <button id="audioToggleBtn" class="mc-btn icon-btn" title="Toggle Ambient Audio">
+            <span id="audioIcon">🎵</span>
+        </button>
+        <div class="badge mc-font">1.20.x Ready</div>
+    </div>
+</nav>
 
-    <nav class="nav-minimal">
-        <span class="logo-text">Saf-Plugins</span>
-        <div class="nav-meta">EST 2026</div>
-    </nav>
+<header>
+    <span class="hero-tag mc-font">PERFORMANCE PLUGINS</span>
+    <h1 class="mc-heading">High-FPS Minecraft <br><span class="text-emerald">Server Modules</span><span class="creeper-mascot"><span class="creeper-face"></span></span></h1>
+    <p class="tagline">Lightweight, high-tps server add-ons compiled for Spigot and Paper.</p>
 
-    <header class="hero">
-        <h1 class="hero-title">Saf-Plugins Proffesional Plugins <br>For Zero Cost.</h1>
-        <p class="hero-sub">Direct. Technical. Optimized.</p>
-    </header>
-
-    <main class="content-wrapper">
-        <section id="plugin-container" class="grid-container">
-            <!-- Cards are automatically generated here -->
-        </section>
-
-        <section class="action-section">
-            <div class="action-card">
-                <div class="action-card-content">
-                    <h2>Custom Logic Required?</h2>
-                    <p>Direct technical development for specialized server needs. Free of charge.</p>
-                </div>
-                <button id="request-btn" class="request-trigger">Submit Project</button>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <p>© 2026 Saf-Plugins — Dev <span>SafkathAlu — Message noolaowq For support </span></p>
-    </footer>
-
-    <div id="info-modal" class="modal">
-        <div class="modal-glass">
-            <span class="close-ui">&times;</span>
-            <div id="modal-content"></div>
+    <div class="hero-actions">
+        <button id="openModalBtn" class="mc-btn mc-cursor-pointer">Custom Plugin</button>
+        <div id="cowInteractive" class="cow-box mc-cursor-pointer">
+            <div class="cow-pixel"></div>
+            <span class="mc-font cow-text">MILK ME</span>
+            <span id="milkCounter" class="milk-badge">0</span>
         </div>
     </div>
+</header>
 
-    <div id="request-modal" class="modal">
-        <div class="modal-glass form-box">
-            <span class="close-ui close-req">&times;</span>
-            <h2>New Project</h2>
-            <div class="input-wrap">
-                <label>Discord ID</label>
-                <input type="text" id="req-name" placeholder="ExampleId67">
+<main>
+    <section class="section">
+        <div class="controls-bar">
+            <div class="section-header">
+                <h2 class="section-title mc-font">PLUGINS</h2>
+                <span id="pluginCount" class="count-badge mc-font">0 Loaded</span>
             </div>
-            <div class="input-wrap">
-                <label>Requirements</label>
-                <textarea id="req-msg" placeholder="Summarize your technical requirements..."></textarea>
+
+            <div class="search-box">
+                <input type="text" id="pluginSearch" class="mc-input" placeholder="Search plugins..." autocomplete="off">
+                <button id="clearSearch" class="clear-btn mc-font" style="display: none;">X</button>
             </div>
-            <button id="submit-request" class="dl-btn full-w">Submit</button>
         </div>
-    </div>
 
-    <div id="lightbox" class="lb-overlay">
-        <img id="lb-img" src="">
-    </div>
+        <div id="pluginGrid" class="plugin-grid"></div>
+    </section>
 
-    <script src="plugins.js"></script>
-    <script src="script.js"></script>
+    <section class="section">
+        <div class="mc-container banner">
+            <div>
+                <h2 class="mc-font">Need custom logic?</h2>
+                <p>Order custom spigot plugins tailored directly for your server setup.</p>
+            </div>
+            <button id="bannerModalBtn" class="mc-btn primary mc-cursor-pointer">Request Build</button>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>Managed by <span class="highlight-user">Developer saf (nooloawq)</span></p>
+    <div class="support-text">
+        <span>Contact on Discord:</span>
+        <button id="copyDiscordBtn" class="mc-btn discord-btn mc-cursor-pointer">
+            <span id="discordUser">Discord User</span>
+        </button>
+        <div id="copyToast" class="mc-tooltip">Copied & Launching!</div>
+    </div>
+</footer>
+
+<div id="requestModal" class="modal">
+    <div class="mc-container modal-content">
+        <span id="closeModalBtn" class="close-btn mc-cursor-pointer">&times;</span>
+        <h2 class="mc-font text-emerald">Request Plugin</h2>
+        <p class="modal-desc">Describe your server plugin requirements on Discord.</p>
+        <div class="modal-info">
+            <span>Discord: </span><code id="modalDiscordTag">nooloawq</code>
+        </div>
+        <button id="modalCopyBtn" class="mc-btn primary full-width mc-cursor-pointer">Copy Username</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
