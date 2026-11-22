@@ -1,98 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft Plugin Hub</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Closed</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="mc-cursor-default">
-<div id="particles" class="pixel-particles"></div>
-
-<nav>
-    <div class="brand">
-        <div class="pixel-icon-frame">
-            <div class="nav-logo-box"></div>
-        </div>
-        <span class="logo-text mc-font">CRAFT<span class="text-emerald">PLUGINS</span></span>
+<body>
+  <main class="container">
+    <div class="card">
+      <div class="status-pill">
+        <span class="dot"></span>
+        <span>Offline</span>
+      </div>
+      <h1>Closed</h1>
+      <p class="subtitle">Goodbye, have a good day.</p>
+      <div class="divider"></div>
+      <p class="contact-label">For any questions, DM</p>
+      <button class="dm-button" id="copyBtn" type="button" aria-label="Copy username noolawq">
+        <span id="handleText">noolawq</span>
+        <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      </button>
     </div>
-    <div class="nav-controls">
-        <button id="audioToggleBtn" class="mc-btn icon-btn" title="Toggle Ambient Audio">
-            <span id="audioIcon">🎵</span>
-        </button>
-        <div class="badge mc-font">1.20.x Ready</div>
-    </div>
-</nav>
+  </main>
 
-<header>
-    <span class="hero-tag mc-font">PERFORMANCE PLUGINS</span>
-    <h1 class="mc-heading">High-FPS Minecraft <br><span class="text-emerald">Server Modules</span><span class="creeper-mascot"><span class="creeper-face"></span></span></h1>
-    <p class="tagline">Lightweight, high-tps server add-ons compiled for Spigot and Paper.</p>
+  <script>
+    const copyBtn = document.getElementById("copyBtn");
+    const handleText = document.getElementById("handleText");
 
-    <div class="hero-actions">
-        <button id="openModalBtn" class="mc-btn mc-cursor-pointer">Custom Plugin</button>
-        <div id="cowInteractive" class="cow-box mc-cursor-pointer">
-            <div class="cow-pixel"></div>
-            <span class="mc-font cow-text">MILK ME</span>
-            <span id="milkCounter" class="milk-badge">0</span>
-        </div>
-    </div>
-</header>
-
-<main>
-    <section class="section">
-        <div class="controls-bar">
-            <div class="section-header">
-                <h2 class="section-title mc-font">PLUGINS</h2>
-                <span id="pluginCount" class="count-badge mc-font">0 Loaded</span>
-            </div>
-
-            <div class="search-box">
-                <input type="text" id="pluginSearch" class="mc-input" placeholder="Search plugins..." autocomplete="off">
-                <button id="clearSearch" class="clear-btn mc-font" style="display: none;">X</button>
-            </div>
-        </div>
-
-        <div id="pluginGrid" class="plugin-grid"></div>
-    </section>
-
-    <section class="section">
-        <div class="mc-container banner">
-            <div>
-                <h2 class="mc-font">Need custom logic?</h2>
-                <p>Order custom spigot plugins tailored directly for your server setup.</p>
-            </div>
-            <button id="bannerModalBtn" class="mc-btn primary mc-cursor-pointer">Request Build</button>
-        </div>
-    </section>
-</main>
-
-<footer>
-    <p>Managed by <span class="highlight-user">Developer saf (nooloawq)</span></p>
-    <div class="support-text">
-        <span>Contact on Discord:</span>
-        <button id="copyDiscordBtn" class="mc-btn discord-btn mc-cursor-pointer">
-            <span id="discordUser">Discord User</span>
-        </button>
-        <div id="copyToast" class="mc-tooltip">Copied & Launching!</div>
-    </div>
-</footer>
-
-<div id="requestModal" class="modal">
-    <div class="mc-container modal-content">
-        <span id="closeModalBtn" class="close-btn mc-cursor-pointer">&times;</span>
-        <h2 class="mc-font text-emerald">Request Plugin</h2>
-        <p class="modal-desc">Describe your server plugin requirements on Discord.</p>
-        <div class="modal-info">
-            <span>Discord: </span><code id="modalDiscordTag">nooloawq</code>
-        </div>
-        <button id="modalCopyBtn" class="mc-btn primary full-width mc-cursor-pointer">Copy Username</button>
-    </div>
-</div>
-
-<script src="script.js"></script>
+    copyBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText("noolawq");
+      handleText.textContent = "Copied";
+      copyBtn.classList.add("copied");
+      setTimeout(() => {
+        handleText.textContent = "noolawq";
+        copyBtn.classList.remove("copied");
+      }, 1800);
+    });
+  </script>
 </body>
 </html>
